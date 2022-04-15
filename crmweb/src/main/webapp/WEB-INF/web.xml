@@ -45,6 +45,6 @@
   </servlet-mapping>
   <!-- 欢迎页，默认进入index controller -->
   <welcome-file-list>
-    <welcome-file>/crmweb</welcome-file>
+    <welcome-file>/</welcome-file>
   </welcome-file-list>
 </web-app>
