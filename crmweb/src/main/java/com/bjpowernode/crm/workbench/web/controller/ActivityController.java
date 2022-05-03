@@ -70,7 +70,7 @@ public class ActivityController {
         map.put("owner",owner);
         map.put("startDate",startDate);
         map.put("endDate",endDate);
-        map.put("beginNo",pageNo-1);
+        map.put("beginNo",(pageNo-1)*pageSize);
         map.put("pageSize",pageSize);
         //调用service方法，查询数据
         List<Activity> activityList = activityService.queryActivityByConditionForPage(map);

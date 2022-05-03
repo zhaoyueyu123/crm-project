@@ -52,14 +52,15 @@ public class UserController {
                 //登录失败，账号已过期
                 returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("账号已过期");
-            }else if("0".equals(user.getLockState())){
+            }else if("0".equals(user.getLockState())) {
                 //登录失败，状态被锁定
                 returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("状态被锁定");
-            }else if(user.getAllowIps().contains(request.getRemoteAddr())){
-                //登录失败，ip受限
-                returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
-                returnObject.setMessage("ip受限");
+
+//            }else if(!user.getAllowIps().contains(request.getRemoteAddr())){
+//                //登录失败，ip受限
+//                returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
+//                returnObject.setMessage("ip受限");
             }else{
                 //登录成功
                 returnObject.setCode(Contants.RETUEN_OBJECT_CODE_SUCCESS);
