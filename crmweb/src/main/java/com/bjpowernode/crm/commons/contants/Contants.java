@@ -7,4 +7,7 @@ public class Contants {
 
     //保存当前用户的key
     public static final String SESSION_USER="sessionUser";
+
+    public static final String RETURN_MIMA="2";
+    public static final String RETURN_ZHANGHAO="3";
 }

@@ -15,11 +15,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-@CrossOrigin
+//@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -40,6 +39,7 @@ public class UserController {
         User user = userService.queryUserByLoginActAndPwd(map);
         //根据查询结果，生成响应信息
         ReturnObject returnObject = new ReturnObject();
+
         if(user == null){
             //登录失败，用户名或者密码错误
             returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
@@ -56,7 +56,7 @@ public class UserController {
                 //登录失败，状态被锁定
                 returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("状态被锁定");
-            }else if(!user.getAllowIps().contains(request.getRemoteAddr())){
+            }else if(user.getAllowIps().contains(request.getRemoteAddr())){
                 //登录失败，ip受限
                 returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
                 returnObject.setMessage("ip受限");
@@ -88,6 +88,7 @@ public class UserController {
                     response.addCookie(cookiePwd);
                 }
             }
+
         }
         return returnObject;
     }
@@ -109,24 +110,37 @@ public class UserController {
 
     @RequestMapping("/settings/qx/user/login1.do")
     @ResponseBody
-    public List<String> login1(@RequestParam(value = "loginAct") String loginAct, @RequestParam(value = "loginPwd") String loginPwd){
+    public Object login1(User user1){
         //封装参数
         List<String> list = new ArrayList<>();
-        if(loginAct != null) {
-            Map<String, Object> map = new HashMap<>();
-            map.put("loginAct", loginAct);
-            map.put("loginPwd", loginPwd);
-            //调用service层方法，查询用户
+        ReturnObject returnObject = new ReturnObject();
+        String loginAct = user1.getLoginAct();
+        String loginPwd = user1.getLoginPwd();
+        if("zs".equals(user1.getLoginAct()) || (3 <= loginAct.length() && loginAct.length()<= 5)) {
+            if("yf123".equals(user1.getLoginPwd()) || (6 <= loginPwd.length() && loginPwd.length()<= 12)) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("loginAct", loginAct);
+                map.put("loginPwd", loginPwd);
+                //调用service层方法，查询用户
 
-            User user = userService.queryUserByLoginActAndPwd(map);
+                User user = userService.queryUserByLoginActAndPwd(map);
 
-            list.add(user.getName());
-            list.add(user.getLoginAct());
-            list.add(user.getLoginPwd());
-            list.add(user.getAllowIps());
+                if(user == null){
+                    //登录失败，用户名或者密码错误
+                    returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
+                    returnObject.setMessage("用户不存在");
+                }else{
+                    returnObject.setCode(Contants.RETUEN_OBJECT_CODE_SUCCESS);
+                }
+            }else {
+                returnObject.setCode(Contants.RETURN_ZHANGHAO);
+                returnObject.setMessage("密码格式错误");
+            }
         }else {
-            list.add("无数据");
+            returnObject.setCode(Contants.RETURN_ZHANGHAO);
+            returnObject.setMessage("账号格式错误");
         }
-        return list;
+        //System.out.println(user1.getLoginAct());
+        return returnObject;
     }
 }

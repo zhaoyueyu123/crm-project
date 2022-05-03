@@ -3,6 +3,7 @@ package com.bjpowernode.crm.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class IndexController {
         List<String> list = new ArrayList<>();
         list.add("111");
         list.add("222");
+        System.out.println("请求成功");
         return list;
     }
 }

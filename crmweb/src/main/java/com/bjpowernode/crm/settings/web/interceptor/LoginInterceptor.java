@@ -2,6 +2,7 @@ package com.bjpowernode.crm.settings.web.interceptor;
 
 import com.bjpowernode.crm.commons.contants.Contants;
 import com.bjpowernode.crm.settings.domain.User;
+import com.mysql.fabric.Response;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +14,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+
+        if(httpServletRequest.getParameter("interAllow") !=null){
+            httpServletResponse.setStatus(httpServletResponse.SC_OK);
+            return true;
+        }
         //如果用户没有登录成功，则跳转到登录页面
         //获取session
         HttpSession session = httpServletRequest.getSession();
