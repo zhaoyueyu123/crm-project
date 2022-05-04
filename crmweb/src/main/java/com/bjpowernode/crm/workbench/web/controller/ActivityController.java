@@ -81,4 +81,31 @@ public class ActivityController {
         retMap.put("totalRows",totalRows);
         return retMap;
     }
+
+    @RequestMapping("/workbench/activity/deleteActivityIds.do")
+    @ResponseBody
+    public Object deleteActivityIds(String[] id){
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            //调用service层方法，删除市场活动
+            int ret = activityService.deleteActivityByIds(id);
+            if(ret>0){
+                returnObject.setCode(Contants.RETUEN_OBJECT_CODE_SUCCESS);
+            }else {
+                returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
+                returnObject.setMessage("系统忙，请稍后重试....");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
+            returnObject.setMessage("系统忙，请稍后重试....");
+        }
+        return returnObject;
+    }
+    @RequestMapping("/workbench/activity/queryActivityById")
+    @ResponseBody
+    public Object queryActivityById(String id){
+        Activity activity = activityService.queryActivityById(id);
+        return activity;
+    }
 }

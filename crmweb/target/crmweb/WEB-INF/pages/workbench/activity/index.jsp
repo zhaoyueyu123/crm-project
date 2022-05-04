@@ -156,6 +156,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 						//每次返回切换页号之后的pageNo和pageSize
 						onChangePage:function (event,pageObj) {
 							queryActivityByConditionForPage(pageObj.currentPage,pageObj.rowsPerPage);
+							$("#checkAll").prop("checked",false);
 						}
 					});
 				}
@@ -167,8 +168,61 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		$("#queryActivityBtn").click(function () {
 			queryActivityByConditionForPage(1,$("#demo_page1").bs_pagination('getOption','rowsPerPage'));
 		});
+		//给全选按钮加单击事件
+		$("#checkAll").click(function () {
+			//如果"全选"按钮是选中状态，则列表中所有checkbox都选中
+			// if(this.checked==true){
+			// 	$("#tBody input[type='checkbox']").prop("checked",true);
+			// }else{
+			// 	$("#tBody input[type='checkbox']").prop("checked",false);
+			// }
+			$("#tBody input[type='checkbox']").prop("checked",this.checked);
+		});
+		//给列表中的所有行的checkbox加单击事件
+		// $("#tBody input[type='checkbox']").click(function () {
+		// 	if($("#tBody input[type='checkbox']").size()==$("#tBody input[type='checkbox']:checked").size()){
+		// 		$("#checkAll").prop("checked",true);
+		// 	}else{
+		// 		$("#checkAll").prop("checked",false);
+		// 	}
+		// });
+		$("#tBody").on("click","input[type='checkbox']",function(){
+			if($("#tBody input[type='checkbox']").size()==$("#tBody input[type='checkbox']:checked").size()){
+				$("#checkAll").prop("checked",true);
+			}else{
+				$("#checkAll").prop("checked",false);
+			}
+		});
+		//添加删除按钮的单击事件
+		$("#deleteActivityBtn").click(function () {
+			//获取列表中所有被选中的checkbox
+			var checkedIds = $("#tBody input[type='checkbox']:checked");
+			if(checkedIds.size()==0){
+				alert("请选择要删除的市场活动");
+				return;
+			}
+			if(window.confirm("确定删除吗?")){
+				var ids="";
+				$.each(checkedIds,function(){
+					ids+="id="+this.value+"&";
+				});
+				ids=ids.substr(0,ids.length-1);
+				$.ajax({
+					url:"workbench/activity/deleteActivityIds.do",
+					data:ids,
+					type:'post',
+					dataType:'json',
+					success:function (data) {
+						if(data.code=="1"){
+							queryActivityByConditionForPage(1,$("#demo_page1").bs_pagination('getOption','rowsPerPage'));
+						}else{
+							alert(data.message);
+						}
+					}
+				});
+			}
+		});
 	});
-
 </script>
 </head>
 <body>
@@ -390,7 +444,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				<div class="btn-group" style="position: relative; top: 18%;">
 				  <button type="button" class="btn btn-primary" id="createActivityBtn"><span class="glyphicon glyphicon-plus"></span> 创建</button>
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+				  <button type="button" class="btn btn-danger" id="deleteActivityBtn"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
 				<div class="btn-group" style="position: relative; top: 18%;">
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importActivityModal" ><span class="glyphicon glyphicon-import"></span> 上传列表数据（导入）</button>
@@ -402,7 +456,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				<table class="table table-hover">
 					<thead>
 						<tr style="color: #B3B3B3;">
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" id="checkAll"/></td>
 							<td>名称</td>
                             <td>所有者</td>
 							<td>开始日期</td>
