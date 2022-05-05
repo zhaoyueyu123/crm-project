@@ -88,4 +88,11 @@ public interface ActivityMapper {
      * @return
      */
     Activity selectActivityById(String id);
+
+    /**
+     * 根据id修改市场活动的信息
+     * @param id
+     * @return
+     */
+    int updateActivity(Activity activity);
 }
