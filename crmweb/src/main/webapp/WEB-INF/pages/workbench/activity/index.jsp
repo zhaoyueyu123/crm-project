@@ -317,6 +317,13 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                 }
             });
 		});
+
+		$("#exportActivityAllBtn").click(function(){
+		    if(window.confirm("是否要导出所有市场活动数据?")){
+                //发送同步请求
+                window.location.href="workbench/activity/exportAllActivities.do";
+            }
+		});
 	});
 </script>
 </head>
