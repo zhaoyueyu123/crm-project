@@ -52,7 +52,6 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
             $(this).children("span").css("color","#E6E6E6");
         });
 
-
         $("#saveCreateActivityRemarkBtn").click(function(){
         	    //收集参数
         	var noteContent = $.trim($("#remark").val());
@@ -116,6 +115,16 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                 }
             });
         });
+        //给所有的修改图标添加单击事件
+		$("#remarkDivList").on("click","a[name='editA']",function () {
+			var id=$(this).attr("remarkId");
+			var noteContent = $("#div_"+id+" h5").text();
+			//把edit-id和edit-noteContent的值写入到模态窗口中
+			$("#edit-id").val(id);
+			$("#edit-noteContent").val(noteContent);
+			//修改市场活动备注模态窗口
+			$("#editRemarkModal").modal("show");
+		});
 	});
 	
 </script>
@@ -137,10 +146,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" role="form">
+						<input type="hidden" id="edit-id">
                         <div class="form-group">
-                            <label for="noteContent" class="col-sm-2 control-label">内容</label>
+                            <label for="edit-noteContent" class="col-sm-2 control-label">内容</label>
                             <div class="col-sm-10" style="width: 81%;">
-                                <textarea class="form-control" rows="3" id="noteContent"></textarea>
+                                <textarea class="form-control" rows="3" id="edit-noteContent"></textarea>
                             </div>
                         </div>
                     </form>
