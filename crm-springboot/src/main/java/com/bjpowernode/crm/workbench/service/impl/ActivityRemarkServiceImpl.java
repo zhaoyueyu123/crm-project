@@ -30,6 +30,6 @@ public class ActivityRemarkServiceImpl implements ActivityRemarkService {
 
     @Override
     public int saveEditActivityRemark(ActivityRemark activityRemark) {
-        return activityRemarkMapper.insertActivityRemark(activityRemark);
+        return activityRemarkMapper.updateActivityRemark(activityRemark);
     }
 }

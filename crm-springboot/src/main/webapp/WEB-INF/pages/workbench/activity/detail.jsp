@@ -125,6 +125,41 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 			//修改市场活动备注模态窗口
 			$("#editRemarkModal").modal("show");
 		});
+		//给更新按钮添加单击事件
+		$("#updateRemarkBtn").click(function(){
+		    //收集参数
+            var id = $("#edit-id").val();
+            var noteContent = $.trim($("#edit-noteContent").val());
+            //表单验证
+            if(noteContent==""){
+                alert("备注内容不能为空");
+                return;
+            }
+            //发送请求
+            $.ajax({
+                url:'workbench/activity/saveEditActivityRemark.do',
+                data:{
+                    id:id,
+                    noteContent:noteContent
+                },
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    if(data.code=="1"){
+                        //关闭模态窗口
+                        $("#editRemarkModal").modal("hide");
+                        //刷新备注列表
+                        $("#div_"+id+" h5").text(data.retData.noteContent);
+                        $("#div_"+id+" small").text(" "+data.retData.editTime+" 由${sessionScope.sessionUser.name}修改");
+                    }else{
+                        //提示信息
+                        alert(data.massage);
+                        //模态窗口不关闭
+                        $("#editRemarkModal").modal("show");
+                    }
+                }
+            });
+		});
 	});
 	
 </script>

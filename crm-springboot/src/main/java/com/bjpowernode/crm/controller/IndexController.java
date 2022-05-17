@@ -16,13 +16,4 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("find")
-    @ResponseBody
-    public List<String> find(){
-        List<String> list = new ArrayList<>();
-        list.add("111");
-        list.add("222");
-        System.out.println("请求成功");
-        return list;
-    }
 }
