@@ -1,24 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
+String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/";
 %>
 <html>
 <head>
-	<base href="<%=basePath%>">
+<base href="<%=basePath%>">
 <meta charset="UTF-8">
 
 <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="jquery/bs_pagination-master/css/jquery.bs_pagination.min.css">
 
 <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
-
+<script type="text/javascript" src="jquery/bs_pagination-master/js/jquery.bs_pagination.min.js"></script>
+<script type="text/javascript" src="jquery/bs_pagination-master/localization/en.js"></script>
 <script type="text/javascript">
 
 	$(function(){
+
 		//给创建按钮添加单击事件
 		$("#createClueBtn").click(function () {
 			//初始化工作
@@ -44,7 +47,12 @@
 			var nextContactTime = $.trim($("#create-nextContactTime").val());
 			var address = $.trim($("#create-address").val());
 			//表单验证
-
+            if(company==""){
+                alert("公司名不能为空");
+            }
+            if(fullname==""){
+                alert("姓名不能为空");
+            }
 			//发送请求
 			$.ajax({
 				url:'workbench/clue/saveCreateClue.do',
@@ -82,6 +90,77 @@
 				}
 			});
 		});
+		//当市场活动主页面加载完成，查询所有数据的第一页以及所有数据的总条数
+        //发送请求
+		function queryClueByConditionForPage(pageNo,pageSize){
+        	//收集参数
+			var fullname = $.trim($("#query-fullname").val());
+			var owner = $("#query-owner").val();
+			var company = $.trim($("#query-company").val());
+			var phone = $.trim($("#query-phone").val());
+			var mphone = $.trim($("#query-mphone").val());
+			var state = $("#query-state").val();
+			var source = $("#query-source").val();
+        	$.ajax({
+        		url:'workbench/clue/queryClueByConditionForPage.do',
+        		data:{
+        			fullname:fullname,
+        			owner:owner,
+        			company:company,
+        			phone:phone,
+        			mphone:mphone,
+        			state:state,
+        			source:source,
+        			pageNo:pageNo,
+        			pageSize:pageSize
+        		},
+        		type:'post',
+        		dataType:'json',
+        		success:function(data){
+        			//clueList,拼接所有行数据
+        			var htmlStr="";
+        			$.each(data.clueList,function(index,obj){
+        				htmlStr+="<tr class=\"active\">";
+        				htmlStr+="<td><input type=\"checkbox\" value=\"" +obj.id+"\"/></td>"
+        				htmlStr+="<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='workbench/clue/detailClue.do?id="+obj.id+"'\">" +obj.fullname+obj.appellation+"</a></td>";
+        				htmlStr+="<td>"+obj.company+"</td>";
+        				htmlStr+="<td>"+obj.mphone+"</td>";
+        				htmlStr+="<td>"+obj.phone+"</td>";
+        				htmlStr+="<td>"+obj.source+"</td>";
+        				htmlStr+="<td>"+obj.owner+"</td>";
+        				htmlStr+="<td>"+obj.state+"</td>";
+        				htmlStr+="</tr>";
+        			});
+        			$("#tBody").html(htmlStr);
+
+        			var  totalPages =1;
+        			if(data.totalRows%pageSize===0){
+        				totalPages = data.totalRows/pageSize;
+        			}else{
+        				totalPages = parseInt(data.totalRows/pageSize) +1;
+        			}
+        			//调用bs_pagination函数，显示信息
+        			$("#demo_page1").bs_pagination({
+        				currentPage:pageNo,//当前页号，相当于pageNo
+        				rowsPerPage:pageSize,//每页显示条数，相当于pageSize
+        				totalRows:data.totalRows,//总条数
+        				totalPages:totalPages,//总页数，必填参数
+        				visiblePageLinks: 5,//最多可以显示的卡片数
+        				showGoToPage:true,//是否显示“跳转到”部分，默认true
+        				showRowsPerPage: true,//是否显示“每页显示条数”部分。默认true
+        				showRowsInfo: true,//是否显示记录的信息，默认true
+        				//用户每次切换页号，都会自动触发本函数；
+        				//每次返回切换页号之后的pageNo和pageSize
+        				onChangePage:function (event,pageObj) {
+        					queryClueByConditionForPage(pageObj.currentPage,pageObj.rowsPerPage);
+        					$("#checkAll").prop("checked",false);
+        				}
+        			});
+        		}
+        	});
+        }
+        //启动页面时自动查找活动列表内容
+        queryClueByConditionForPage(1,10);
 	});
 	
 </script>
@@ -388,28 +467,28 @@
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">名称</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-fullname">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">公司</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-company">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">公司座机</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-mphone">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">线索来源</div>
-					  <select class="form-control">
+					  <select class="form-control" id="query-source">
 						  <option></option>
 						  <c:forEach items="${sourceList}" var="source">
 							  <option value="${source.id}">${source.value}</option>
@@ -423,7 +502,7 @@
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">所有者</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-owner">
 				    </div>
 				  </div>
 				  
@@ -432,14 +511,14 @@
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">手机</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-phone">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">线索状态</div>
-					  <select class="form-control">
+					  <select class="form-control" id="query-state">
 						  <option></option>
 						  <c:forEach items="${clueStateList}" var="clue">
 							  <option value="${clue.id}">${clue.value}</option>
@@ -458,14 +537,12 @@
 				  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editClueModal"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
 				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
-				
-				
 			</div>
 			<div style="position: relative;top: 50px;">
 				<table class="table table-hover">
 					<thead>
 						<tr style="color: #B3B3B3;">
-							<td><input type="checkbox" /></td>
+							<td><input type="checkbox" id="checkAll"/></td>
 							<td>名称</td>
 							<td>公司</td>
 							<td>公司座机</td>
@@ -475,8 +552,9 @@
 							<td>线索状态</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id="tBody">
+                        <%--
+						<tr class="active">
 							<td><input type="checkbox" /></td>
 							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">李四先生</a></td>
 							<td>动力节点</td>
@@ -496,11 +574,14 @@
                             <td>zhangsan</td>
                             <td>已联系</td>
                         </tr>
+                        --%>
 					</tbody>
 				</table>
 			</div>
-			
+
 			<div style="height: 50px; position: relative;top: 60px;">
+			<div id="demo_page1"></div>
+			<%--
 				<div>
 					<button type="button" class="btn btn-default" style="cursor: default;">共<b>50</b>条记录</button>
 				</div>
@@ -533,10 +614,9 @@
 						</ul>
 					</nav>
 				</div>
+				--%>
 			</div>
-			
 		</div>
-		
 	</div>
 </body>
 </html>

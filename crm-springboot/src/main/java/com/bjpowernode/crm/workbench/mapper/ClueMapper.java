@@ -3,6 +3,9 @@ package com.bjpowernode.crm.workbench.mapper;
 import com.bjpowernode.crm.workbench.domain.Clue;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+import java.util.Map;
+
 @Mapper
 public interface ClueMapper {
     /**
@@ -59,4 +62,25 @@ public interface ClueMapper {
      * @return
      */
     int insertClue(Clue clue);
+
+    /**
+     * 根据查询条件查找线索
+     * @param map
+     * @return
+     */
+    List<Clue> selectClueByConditionForPage(Map<String,Object> map);
+
+    /**
+     * 根据查询条件查找线索总条数
+     * @param map
+     * @return
+     */
+    int selectCountOfClueByCondition(Map<String,Object> map);
+
+    /**
+     * 根据id查找线索
+     * @param id
+     * @return
+     */
+    Clue selectClueById(String id);
 }

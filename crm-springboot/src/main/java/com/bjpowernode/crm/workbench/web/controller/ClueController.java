@@ -8,6 +8,7 @@ import com.bjpowernode.crm.settings.domain.DicValue;
 import com.bjpowernode.crm.settings.domain.User;
 import com.bjpowernode.crm.settings.service.DicValueService;
 import com.bjpowernode.crm.settings.service.UserService;
+import com.bjpowernode.crm.workbench.domain.Activity;
 import com.bjpowernode.crm.workbench.domain.Clue;
 import com.bjpowernode.crm.workbench.service.ClueService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Controller
 public class ClueController {
     @Autowired
@@ -68,5 +72,35 @@ public class ClueController {
             returnObject.setMessage("线索插入失败。。。");
         }
         return returnObject;
+    }
+    @RequestMapping("/workbench/clue/queryClueByConditionForPage.do")
+    @ResponseBody
+    public Object queryClueByConditionForPage(String fullname,String company,String mphone,String source,String owner,String phone,String state,int pageNo,int pageSize){
+        //封装参数
+        Map<String,Object> map = new HashMap<>();
+        map.put("fullname",fullname);
+        map.put("company",company);
+        map.put("mphone",mphone);
+        map.put("source",source);
+        map.put("owner",owner);
+        map.put("phone",phone);
+        map.put("state",state);
+        map.put("beginNo",(pageNo-1)*pageSize);
+        map.put("pageSize",pageSize);
+        //调用service方法，查询数据
+        List<Clue> clueList = clueService.queryClueByConditionForPage(map);
+        int totalRows = clueService.queryCountOfClueByCondition(map);
+        //根据查询结果，生成响应信息
+        Map<String,Object> retMap = new HashMap<>();
+        retMap.put("clueList",clueList);
+        retMap.put("totalRows",totalRows);
+        return retMap;
+    }
+    @RequestMapping("workbench/clue/detailClue.do")
+    public String detailClue(String id,HttpServletRequest request){
+        Clue clue = clueService.queryClueById(id);
+        System.out.println(clue.getId());
+        request.setAttribute("clue",clue);
+        return "workbench/clue/detail";
     }
 }

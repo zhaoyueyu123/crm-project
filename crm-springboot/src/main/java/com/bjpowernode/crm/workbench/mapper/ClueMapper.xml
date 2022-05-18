@@ -312,4 +312,83 @@
     insert into tbl_clue( id, fullname, appellation, owner, company, job, email, phone, website, mphone, state,source, create_by, create_time, edit_by, edit_time, description, contact_summary,next_contact_time, address)
     values (#{id},#{fullname},#{appellation},#{owner},#{company},#{job},#{email},#{phone},#{website},#{mphone},#{state},#{source},#{createBy},#{createTime},#{editBy},#{editTime},#{description},#{contactSummary},#{nextContactTime},#{address})
   </insert>
+
+  <select id="selectClueByConditionForPage" parameterType="map" resultMap="BaseResultMap">
+    select c.id, c.fullname, dv1.value as appellation, u.name as owner, c.company, c.phone, c.mphone, dv3.value as state, dv2.value as source,c.create_time
+    from tbl_clue c
+    join tbl_user u on c.owner=u.id
+    left join tbl_dic_value dv1 on c.appellation=dv1.id
+    left join tbl_dic_value dv2 on c.source=dv2.id
+    left join tbl_dic_value dv3 on c.state=dv3.id
+    <where>
+      <if test="fullname!=null and fullname!=''">
+        and c.fullname like '%' #{fullname} '%'
+      </if>
+      <if test="company!=null and company!=''">
+        and c.company like '%' #{company} '%'
+      </if>
+      <if test="mphone!=null and mphone!=''">
+        and c.phone like '%' #{phone} '%'
+      </if>
+      <if test="source!=null and source!=''">
+        and c.source = #{source}
+      </if>
+      <if test="owner!=null and owner!=''">
+        and u.name like '%' #{owner} '%'
+      </if>
+      <if test="phone!=null and phone!=''">
+        and c.phone like '%' #{phone} '%'
+      </if>
+      <if test="state!=null and state!=''">
+        and c.state = #{state}
+      </if>
+    </where>
+    order by c.create_time desc
+    limit #{beginNo},#{pageSize}
+  </select>
+
+  <select id="selectCountOfClueByCondition" parameterType="map" resultType="int">
+    select count(*)
+    from tbl_clue c
+    join tbl_user u on c.owner=u.id
+    left join tbl_dic_value dv1 on c.appellation=dv1.id
+    left join tbl_dic_value dv2 on c.source=dv2.id
+    left join tbl_dic_value dv3 on c.state=dv3.id
+    <where>
+      <if test="fullname!=null and fullname!=''">
+        and c.fullname like '%' #{fullname} '%'
+      </if>
+      <if test="company!=null and company!=''">
+        and c.company like '%' #{company} '%'
+      </if>
+      <if test="mphone!=null and mphone!=''">
+        and c.phone like '%' #{phone} '%'
+      </if>
+      <if test="source!=null and source!=''">
+        and c.source = #{source}
+      </if>
+      <if test="owner!=null and owner!=''">
+        and u.name like '%' #{owner} '%'
+      </if>
+      <if test="phone!=null and phone!=''">
+        and c.phone like '%' #{phone} '%'
+      </if>
+      <if test="state!=null and state!=''">
+        and c.state = #{state}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectClueById" parameterType="string" resultMap="BaseResultMap">
+    select c.id, c.fullname, dv1.value as appellation, u1.name as owner, c.company, c.phone, c.mphone, dv3.value as state, dv2.value as source,c.create_time,c.job,c.email,c.website,c.description,c.contact_summary,
+    c.next_contact_time, c.address,u2.name as create_by,c.edit_time,u3.name as edit_by
+    from tbl_clue c
+    join tbl_user u1 on c.owner=u1.id
+    join tbl_user u2 on c.create_by=u2.id
+    left join tbl_user u3 on c.edit_by=u3.id
+    left join tbl_dic_value dv1 on c.appellation=dv1.id
+    left join tbl_dic_value dv2 on c.source=dv2.id
+    left join tbl_dic_value dv3 on c.state=dv3.id
+    where c.id=#{id}
+  </select>
 </mapper>

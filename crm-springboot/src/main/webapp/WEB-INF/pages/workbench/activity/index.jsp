@@ -581,13 +581,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                             <td>2020-10-10</td>
                             <td>2020-10-20</td>
                         </tr>
-                        --%>
+                     --%>
 					</tbody>
 				</table>
 			</div>
-			<div id="demo_page1">
-
-			</div>
+			<div id="demo_page1"></div>
 <%--			<div style="height: 50px; position: relative;top: 30px;">--%>
 <%--				<div>--%>
 <%--					<button type="button" class="btn btn-default" style="cursor: default;">共<b id="totalRowsB">50</b>条记录</button>--%>
