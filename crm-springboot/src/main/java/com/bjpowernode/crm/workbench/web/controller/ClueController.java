@@ -10,6 +10,9 @@ import com.bjpowernode.crm.settings.service.DicValueService;
 import com.bjpowernode.crm.settings.service.UserService;
 import com.bjpowernode.crm.workbench.domain.Activity;
 import com.bjpowernode.crm.workbench.domain.Clue;
+import com.bjpowernode.crm.workbench.domain.ClueRemark;
+import com.bjpowernode.crm.workbench.service.ActivityService;
+import com.bjpowernode.crm.workbench.service.ClueRemarkService;
 import com.bjpowernode.crm.workbench.service.ClueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,12 +28,22 @@ import java.util.Map;
 
 @Controller
 public class ClueController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private DicValueService dicValueService;
+
     @Autowired
     private ClueService clueService;
+
+    @Autowired
+    private ClueRemarkService clueRemarkService;
+
+    @Autowired
+    private ActivityService activityService;
+
     @RequestMapping("/workbench/clue/index.do")
     public String index(HttpServletRequest request){
         //调用service层方法
@@ -96,11 +109,29 @@ public class ClueController {
         retMap.put("totalRows",totalRows);
         return retMap;
     }
-    @RequestMapping("workbench/clue/detailClue.do")
+    @RequestMapping("/workbench/clue/detailClue.do")
     public String detailClue(String id,HttpServletRequest request){
+        //调用service层方法,查询数据
         Clue clue = clueService.queryClueById(id);
-        System.out.println(clue.getId());
+        List<ClueRemark> remarkList = clueRemarkService.queryClueRemarkForDetailByClueId(id);
+        List<Activity> activityList = activityService.queryActivityForDetailByClueId(id);
+
         request.setAttribute("clue",clue);
+        request.setAttribute("remarkList",remarkList);
+        request.setAttribute("activityList",activityList);
         return "workbench/clue/detail";
+    }
+
+    @RequestMapping("/workbench/clue/queryActivityForDetailByNameClueId.do")
+    @ResponseBody
+    public Object queryActivityForDetailByNameClueId(String activityName,String clueId){
+        //封装参数
+        Map<String,Object> map =new HashMap<>();
+        map.put("activityName",activityName);
+        map.put("clueId",clueId);
+        //调用service层方法
+        List<Activity> activityList = activityService.queryActivityForDetailByNameClueId(map);
+        //根据查询结果返回响应信息
+        return activityList;
     }
 }

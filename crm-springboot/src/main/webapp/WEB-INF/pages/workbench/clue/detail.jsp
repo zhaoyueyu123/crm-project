@@ -51,6 +51,42 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		$(".myHref").mouseout(function(){
 			$(this).children("span").css("color","#E6E6E6");
 		});
+		//给"关联市场活动"按钮添加单击事件
+		$("#bundActivityBtn").click(function(){
+		    //弹出线索关联市场活动模态窗口
+		    $("#bundModal").modal("show");
+		});
+
+		//给市场活动搜索框添加键盘弹起事件
+        $("#searchActivityTxt").keyup(function(){
+            //收集参数
+            var activityName=this.value;
+            var clueId='${clue.id}';
+            //发送请求
+            $.ajax({
+                url:'workbench/clue/queryActivityForDetailByNameClueId.do',
+                data:{
+                    activityName:activityName,
+                    clueId:clueId,
+                },
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    //遍历data,显示搜索到的市场活动列表
+                    var htmlStr="";
+                    $.each(data,function(index,obj){
+                        htmlStr+="<tr>";
+                        htmlStr+="<td><input type=\"checkbox\" value=\""+obj.id+"\"/></td>";
+                        htmlStr+="<td>"+obj.name+"</td>";
+                        htmlStr+="<td>"+obj.startDate+"</td>";
+                        htmlStr+="<td>"+obj.endDate+"</td>";
+                        htmlStr+="<td>"+obj.owner+"</td>";
+                        htmlStr+="</tr>";
+                    });
+                    $("#tBody").html(htmlStr);
+                }
+            });
+        });
 	});
 	
 </script>
@@ -72,7 +108,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 					<div class="btn-group" style="position: relative; top: 18%; left: 8px;">
 						<form class="form-inline" role="form">
 						  <div class="form-group has-feedback">
-						    <input type="text" class="form-control" style="width: 300px;" placeholder="请输入市场活动名称，支持模糊查询">
+						    <input type="text" id="searchActivityTxt" class="form-control" style="width: 300px;" placeholder="请输入市场活动名称，支持模糊查询">
 						    <span class="glyphicon glyphicon-search form-control-feedback"></span>
 						  </div>
 						</form>
@@ -88,7 +124,8 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 								<td></td>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id="tBody">
+						    <%--
 							<tr>
 								<td><input type="checkbox"/></td>
 								<td>发传单</td>
@@ -103,6 +140,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 								<td>2020-10-20</td>
 								<td>zhangsan</td>
 							</tr>
+							--%>
 						</tbody>
 					</table>
 				</div>
@@ -226,7 +264,21 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		<div class="page-header">
 			<h4>备注</h4>
 		</div>
-		
+        <c:forEach items="${remarkList}" var="remark">
+            <div id="div_${remark.id}" class="remarkDiv" style="height: 60px;">
+                <img title=${remark.createBy} src="image/user-thumbnail.png" style="width: 30px; height:30px;">
+                <div style="position: relative; top: -40px; left: 40px;" >
+                    <h5>${remark.noteContent}</h5>
+                    <font color="gray">线索</font> <font color="gray">-</font> <b>${clue.fullname}${clue.appellation}-${clue.company}</b> <small style="color: gray;"> ${remark.editFlag=='1'?remark.editTime:remark.createTime} 由${remark.editFlag=='1'?remark.editBy:remark.createBy}${remark.editFlag=='1'?'修改':'创建'}</small>
+                    <div style="position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;">
+                        <a class="myHref" name="editA" remarkId="${remark.id}" href="javascript:void(0);"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #E6E6E6;"></span></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="myHref" name="deleteA" remarkId="${remark.id}" href="javascript:void(0);"><span class="glyphicon glyphicon-remove" style="font-size: 20px; color: #E6E6E6;"></span></a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+		<%--
 		<!-- 备注1 -->
 		<div class="remarkDiv" style="height: 60px;">
 			<img title="zhangsan" src="image/user-thumbnail.png" style="width: 30px; height:30px;">
@@ -254,6 +306,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				</div>
 			</div>
 		</div>
+		--%>
 		
 		<div id="remarkDiv" style="background-color: #E6E6E6; width: 870px; height: 90px;">
 			<form role="form" style="position: relative;top: 10px; left: 10px;">
@@ -284,6 +337,16 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 						</tr>
 					</thead>
 					<tbody>
+					    <c:forEach items="${activityList}" var="activity">
+					        <tr>
+                            	<td>${activity.name}</td>
+                            	<td>${activity.startDate}</td>
+                            	<td>${activity.endDate}</td>
+                            	<td>${activity.owner}</td>
+                            	<td><a href="javascript:void(0);" activityId="${activity.id}" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
+                            </tr>
+					    </c:forEach>
+					    <%--
 						<tr>
 							<td>发传单</td>
 							<td>2020-10-10</td>
@@ -298,12 +361,13 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 							<td>zhangsan</td>
 							<td><a href="javascript:void(0);"  style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
 						</tr>
+					    --%>
 					</tbody>
 				</table>
 			</div>
 			
 			<div>
-				<a href="javascript:void(0);" data-toggle="modal" data-target="#bundModal" style="text-decoration: none;"><span class="glyphicon glyphicon-plus"></span>关联市场活动</a>
+				<a href="javascript:void(0);" id="bundActivityBtn" style="text-decoration: none;"><span class="glyphicon glyphicon-plus"></span>关联市场活动</a>
 			</div>
 		</div>
 	</div>
