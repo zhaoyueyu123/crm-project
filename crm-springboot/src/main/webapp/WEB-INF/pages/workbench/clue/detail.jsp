@@ -53,6 +53,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		});
 		//给"关联市场活动"按钮添加单击事件
 		$("#bundActivityBtn").click(function(){
+		    //初始化工作
+		    //清空搜索框
+		    $("#searchActivityTxt").val("");
+		    //清空搜索的市场活动列表
+		    $("#tbody").html("");
 		    //弹出线索关联市场活动模态窗口
 		    $("#bundModal").modal("show");
 		});
@@ -86,6 +91,81 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                     $("#tBody").html(htmlStr);
                 }
             });
+        });
+        //给"关联"按钮添加单击事件
+        $("#saveBundActivityBtn").click(function(){
+            //收集参数
+            //获取列表中所有被选中的checkbox
+            var checkedIds=$("#tBody input[type='checkbox']:checked");
+            if(checkedIds.size()==0){
+                alert("请选择要关联的市场活动");
+                return;
+            }
+            var ids="";
+            $.each(checkedIds,function(){
+                ids+="activityId="+this.value+"&";
+            });
+            ids+="clueId=${clue.id}";
+            //发送请求
+            $.ajax({
+                url:'workbench/clue/saveBund.do',
+                data:ids,
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    if(data.code==1){
+                        //关闭模态窗口
+                        $("#bundModal").modal("hide");
+                        var htmlStr="";
+                        $.each(data.retData,function(index,obj){
+                            htmlStr+="<tr id=\"tr_"+obj.id+"\">";
+                            htmlStr+="<td>"+obj.name+"</td>";
+                            htmlStr+="<td>"+obj.startDate+"</td>";
+                            htmlStr+="<td>"+obj.endDate+"</td>";
+                            htmlStr+="<td>"+obj.owner+"</td>";
+                            htmlStr+="<td><a href=\"javascript:void(0);\" name=\"deleteRelation\" activityId=\""+obj.id+"\" style=\"text-decoration: none;\"><span class=\"glyphicon glyphicon-remove\"></span>解除关联</a></td>";
+                            htmlStr+="</tr>";
+                        });
+                        $("#relationTBody").append(htmlStr);
+                    }else{
+                        //提示信息
+                        alert(data.message);
+                        //模态窗口不关闭
+                        $("#bundModal").modal("hide");
+                    }
+                }
+            })
+        });
+        //给"解除关联"按钮添加单击事件
+        $("#relationTBody").on("click","a[name='deleteRelation']",function(){
+            if(window.confirm("确定删除吗?")){
+                //收集参数
+                var clueId='${clue.id}';
+                var activityId=$(this).attr("activityId");
+                //发送请求
+                $.ajax({
+                    url:'workbench/clue/removeClueActivityRelationById.do',
+                    data:{
+                        clueId:clueId,
+                        activityId:activityId,
+                    },
+                    type:'post',
+                    datatype:'json',
+                    success:function(data){
+                        if(data.code==1){
+                            //刷新备注列表
+                            $("#tr_"+activityId).remove();
+                        }else{
+                            alert(data.message);
+                        }
+                    }
+                });
+            }
+        });
+        //给"转换"按钮添加单击事件
+        $("#convertClueBtn").click(function(){
+            //发送同步请求
+            window.location.href="workbench/clue/toConvert.do?id=${clue.id}";
         });
 	});
 	
@@ -146,7 +226,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">关联</button>
+					<button type="button" class="btn btn-primary" id="saveBundActivityBtn">关联</button>
 				</div>
 			</div>
 		</div>
@@ -164,7 +244,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 			<h3>${clue.fullname}${clue.appellation} <small>${clue.company}</small></h3>
 		</div>
 		<div style="position: relative; height: 50px; width: 500px;  top: -72px; left: 700px;">
-			<button type="button" class="btn btn-default" onclick="window.location.href='convert.html';"><span class="glyphicon glyphicon-retweet"></span> 转换</button>
+			<button type="button" class="btn btn-default" id="convertClueBtn"><span class="glyphicon glyphicon-retweet"></span> 转换</button>
 			
 		</div>
 	</div>
@@ -336,14 +416,14 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="relationTBody">
 					    <c:forEach items="${activityList}" var="activity">
-					        <tr>
+					        <tr id="tr_${activity.id}">
                             	<td>${activity.name}</td>
                             	<td>${activity.startDate}</td>
                             	<td>${activity.endDate}</td>
                             	<td>${activity.owner}</td>
-                            	<td><a href="javascript:void(0);" activityId="${activity.id}" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
+                            	<td><a href="javascript:void(0);" name="deleteRelation" activityId="${activity.id}" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
                             </tr>
 					    </c:forEach>
 					    <%--
