@@ -114,7 +114,7 @@ public class ClueController {
     @RequestMapping("/workbench/clue/detailClue.do")
     public String detailClue(String id,HttpServletRequest request){
         //调用service层方法,查询数据
-        Clue clue = clueService.queryClueById(id);
+        Clue clue = clueService.queryClueForDetailById(id);
         List<ClueRemark> remarkList = clueRemarkService.queryClueRemarkForDetailByClueId(id);
         List<Activity> activityList = activityService.queryActivityForDetailByClueId(id);
 
@@ -198,7 +198,7 @@ public class ClueController {
     @RequestMapping("/workbench/clue/toConvert.do")
     public String toConvert(String id,HttpServletRequest request){
         //调用service层方法，查询线索的明细信息
-        Clue clue=clueService.queryClueById(id);
+        Clue clue=clueService.queryClueForDetailById(id);
         List<DicValue> stageList=dicValueService.queryDicValueByTypeCode("stage");
         request.setAttribute("clue",clue);
         request.setAttribute("stageList",stageList);
@@ -218,5 +218,31 @@ public class ClueController {
         List<Activity> activityList=activityService.queryActivityForConvertByNameClueId(map);
         //根据查询结果，返回响应信息
         return activityList;
+    }
+
+    @RequestMapping("/workbench/clue/convertClue.do")
+    @ResponseBody
+    public Object convertClue(String clueId,String money,String name,String expectedDate,String stage,String activityId,String isCreateTran,HttpSession session) {
+        //封装参数
+        Map<String, Object> map = new HashMap<>();
+        map.put("clueId", clueId);
+        map.put("money", money);
+        map.put("name", name);
+        map.put("expectedDate", expectedDate);
+        map.put("stage", stage);
+        map.put("isCreateTran", isCreateTran);
+        map.put("activityId", activityId);
+        map.put(Contants.SESSION_USER, session.getAttribute(Contants.SESSION_USER));
+        ReturnObject returnObject=new ReturnObject();
+        //调用service层方法
+        try {
+            clueService.saveConvert(map);
+            returnObject.setCode(Contants.RETUEN_OBJECT_CODE_SUCCESS);
+        }catch (Exception e){
+            e.printStackTrace();
+            returnObject.setCode(Contants.RETUEN_OBJECT_CODE_FAIL);
+            returnObject.setMessage("保存线索出错");
+        }
+        return returnObject;
     }
 }

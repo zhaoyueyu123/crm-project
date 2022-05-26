@@ -379,7 +379,7 @@
     </where>
   </select>
 
-  <select id="selectClueById" parameterType="string" resultMap="BaseResultMap">
+  <select id="selectClueForDetailById" parameterType="string" resultMap="BaseResultMap">
     select c.id, c.fullname, dv1.value as appellation, u1.name as owner, c.company, c.phone, c.mphone, dv3.value as state, dv2.value as source,c.create_time,c.job,c.email,c.website,c.description,c.contact_summary,
     c.next_contact_time, c.address,u2.name as create_by,c.edit_time,u3.name as edit_by
     from tbl_clue c
@@ -390,5 +390,12 @@
     left join tbl_dic_value dv2 on c.source=dv2.id
     left join tbl_dic_value dv3 on c.state=dv3.id
     where c.id=#{id}
+  </select>
+  
+  <select id="selectClueById" parameterType="string" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"></include>
+    from tbl_clue
+    where id=#{id}
   </select>
 </mapper>

@@ -29,6 +29,9 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 
 		//给市场活动源搜索按钮添加单击事件
 		$("#searchActivityBtn").click(function(){
+		    //清空数据
+		    $("#searchActivityTxt").val("");
+		    $("#tBody").html("");
 		    $("#searchActivityModal").modal("show");
 		});
 		//给市场活动源搜索框添加键盘弹起事件
@@ -59,6 +62,54 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		            $("#tBody").html(htmlStr);
 		        }
 		    });
+		});
+		//给所有市场活动的单选按钮添加单击事件
+		$("#tBody").on("click","input[type='radio']",function(){
+		    //获取市场活动的id和name
+		    var id =this.value;
+		    var activityName=$(this).attr("activityName");
+		    //把市场活动的id写到隐藏域，把name写到输入框中
+		    $("#activityId").val(id);
+		    $("#activityName").val(activityName);
+		    //关闭模态窗口
+		    $("#searchActivityModal").modal("hide");
+		});
+		//给转化按钮添加单击事件
+		$("#saveConvertClueBtn").click(function(){
+		    //收集参数
+		    var clueId="${clue.id}";
+            var money=$.trim($("#amountOfMoney").val());
+            var name=$.trim($("#tradeName").val());
+            var expectedDate=$("#expectedClosingDate").val();
+            var stage=$("stage").val();
+            var activityId=$("#activiyuId").val();
+            var isCreateTran=$("#isCreateTransaction").prop("checked");
+            //表单验证
+            //money是非负整数
+
+            //发送请求
+            $.ajax({
+                url:'workbench/clue/convertClue.do',
+                data:{
+                    clueId:clueId,
+                    money:money,
+                    name:name,
+                    expectedDate:expectedDate,
+                    stage:stage,
+                    activityId:activityId,
+                    isCreateTran:isCreateTran,
+                },
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    if(data.code=="1"){
+                    alert("开始跳转");
+                        window.location.href="workbench/clue/index.do";
+                    }else{
+                        alert(data.message);
+                    }
+                }
+            });
 		});
 	});
 </script>
@@ -158,8 +209,9 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		    </select>
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
-		    <label for="activity">市场活动源&nbsp;&nbsp;<a href="javascript:void(0);" id="searchActivityBtn" style="text-decoration: none;"><span class="glyphicon glyphicon-search"></span></a></label>
-		    <input type="text" class="form-control" id="activity" placeholder="点击上面搜索" readonly>
+		    <label for="activityName">市场活动源&nbsp;&nbsp;<a href="javascript:void(0);" id="searchActivityBtn" style="text-decoration: none;"><span class="glyphicon glyphicon-search"></span></a></label>
+		    <input type='hidden' id="activityId">
+		    <input type="text" class="form-control" id="activityName" placeholder="点击上面搜索" readonly>
 		  </div>
 		</form>
 		
@@ -170,7 +222,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 		<b>${clue.owner}</b>
 	</div>
 	<div id="operation" style="position: relative; left: 40px; height: 35px; top: 100px;">
-		<input class="btn btn-primary" type="button" value="转换">
+		<input class="btn btn-primary" type="button" id="saveConvertClueBtn" value="转换">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<input class="btn btn-default" type="button" value="取消">
 	</div>
