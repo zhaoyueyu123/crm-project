@@ -103,7 +103,6 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
                 dataType:'json',
                 success:function(data){
                     if(data.code=="1"){
-                    alert("开始跳转");
                         window.location.href="workbench/clue/index.do";
                     }else{
                         alert(data.message);
