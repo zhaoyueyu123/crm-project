@@ -19,7 +19,35 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 <script type="text/javascript">
 
 	$(function(){
-		
+		//给创建按钮添加单击事件
+		$("#createBtn").click(function () {
+			window.location.href="workbench/transaction/toSave.do";
+		});
+		queryTranByConditionForPage();
+		function queryTranByConditionForPage() {
+			$.ajax({
+				url:"workbench/transaction/queryTranAll.do",
+				data:{},
+				type:"post",
+				dataType:"json",
+				success:function (data) {
+					var htmlStr="";
+					$.each(data.tranList,function(index,obj){
+						htmlStr+="<tr>";
+						htmlStr+="<td><input type=\"checkbox\" /></td>";
+						htmlStr+="<td><a style=\"text-decoration: none; cursor: pointer;\" onclick=\"window.location.href='workbench/transaction/detailTran.do?id="+obj.id+"';\">"+obj.name+"</a></td>";
+						htmlStr+="<td>"+obj.customerId+"</td>";
+						htmlStr+="<td>"+obj.stage+"</td>";
+						htmlStr+="<td>"+obj.type+"</td>";
+						htmlStr+="<td>"+obj.owner+"</td>";
+						htmlStr+="<td>"+obj.source+"</td>";
+						htmlStr+="<td>"+obj.contactsId+"</td>";
+						htmlStr+="</tr>";
+					});
+					$("#tBody").html(htmlStr);
+				}
+			});
+		}
 		
 		
 	});
@@ -48,21 +76,21 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">所有者</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-owner">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">名称</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text"id="query-name">
 				    </div>
 				  </div>
 				  
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">客户名称</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-customerId">
 				    </div>
 				  </div>
 				  
@@ -71,17 +99,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">阶段</div>
-					  <select class="form-control">
+					  <select class="form-control" id="query-stage">
 					  	<option></option>
-					  	<option>资质审查</option>
-					  	<option>需求分析</option>
-					  	<option>价值建议</option>
-					  	<option>确定决策者</option>
-					  	<option>提案/报价</option>
-					  	<option>谈判/复审</option>
-					  	<option>成交</option>
-					  	<option>丢失的线索</option>
-					  	<option>因竞争丢失关闭</option>
+						<c:forEach items="${stageList}" var="s">
+							<option value="${s.id}">${s.value}</option>
+						</c:forEach>
 					  </select>
 				    </div>
 				  </div>
@@ -89,10 +111,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">类型</div>
-					  <select class="form-control">
+					  <select class="form-control" id="query-tran">
 					  	<option></option>
-					  	<option>已有业务</option>
-					  	<option>新业务</option>
+						  <c:forEach items="${transactionTypeList}" var="tt">
+							  <option value="${tt.id}">${tt.value}</option>
+						  </c:forEach>
 					  </select>
 				    </div>
 				  </div>
@@ -100,22 +123,11 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">来源</div>
-				      <select class="form-control" id="create-clueSource">
+				      <select class="form-control" id="query-source">
 						  <option></option>
-						  <option>广告</option>
-						  <option>推销电话</option>
-						  <option>员工介绍</option>
-						  <option>外部介绍</option>
-						  <option>在线商场</option>
-						  <option>合作伙伴</option>
-						  <option>公开媒介</option>
-						  <option>销售邮件</option>
-						  <option>合作伙伴研讨会</option>
-						  <option>内部研讨会</option>
-						  <option>交易会</option>
-						  <option>web下载</option>
-						  <option>web调研</option>
-						  <option>聊天</option>
+						  <c:forEach items="${sourceList}" var="source">
+							  <option value="${source.id}">${source.value}</option>
+						  </c:forEach>
 						</select>
 				    </div>
 				  </div>
@@ -123,7 +135,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 				  <div class="form-group">
 				    <div class="input-group">
 				      <div class="input-group-addon">联系人名称</div>
-				      <input class="form-control" type="text">
+				      <input class="form-control" type="text" id="query-contact">
 				    </div>
 				  </div>
 				  
@@ -133,7 +145,7 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 			</div>
 			<div class="btn-toolbar" role="toolbar" style="background-color: #F7F7F7; height: 50px; position: relative;top: 10px;">
 				<div class="btn-group" style="position: relative; top: 18%;">
-				  <button type="button" class="btn btn-primary" onclick="window.location.href='save.html';"><span class="glyphicon glyphicon-plus"></span> 创建</button>
+				  <button type="button" class="btn btn-primary" id="createBtn"><span class="glyphicon glyphicon-plus"></span> 创建</button>
 				  <button type="button" class="btn btn-default" onclick="window.location.href='edit.html';"><span class="glyphicon glyphicon-pencil"></span> 修改</button>
 				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
@@ -154,27 +166,27 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 							<td>联系人名称</td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>
-							<td>动力节点</td>
-							<td>谈判/复审</td>
-							<td>新业务</td>
-							<td>zhangsan</td>
-							<td>广告</td>
-							<td>李四</td>
-						</tr>
-                        <tr class="active">
-                            <td><input type="checkbox" /></td>
-                            <td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>
-                            <td>动力节点</td>
-                            <td>谈判/复审</td>
-                            <td>新业务</td>
-                            <td>zhangsan</td>
-                            <td>广告</td>
-                            <td>李四</td>
-                        </tr>
+					<tbody id="tBody">
+<%--						<tr>--%>
+<%--							<td><input type="checkbox" /></td>--%>
+<%--							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>--%>
+<%--							<td>动力节点</td>--%>
+<%--							<td>谈判/复审</td>--%>
+<%--							<td>新业务</td>--%>
+<%--							<td>zhangsan</td>--%>
+<%--							<td>广告</td>--%>
+<%--							<td>李四</td>--%>
+<%--						</tr>--%>
+<%--                        <tr class="active">--%>
+<%--                            <td><input type="checkbox" /></td>--%>
+<%--                            <td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='detail.html';">动力节点-交易01</a></td>--%>
+<%--                            <td>动力节点</td>--%>
+<%--                            <td>谈判/复审</td>--%>
+<%--                            <td>新业务</td>--%>
+<%--                            <td>zhangsan</td>--%>
+<%--                            <td>广告</td>--%>
+<%--                            <td>李四</td>--%>
+<%--                        </tr>--%>
 					</tbody>
 				</table>
 			</div>

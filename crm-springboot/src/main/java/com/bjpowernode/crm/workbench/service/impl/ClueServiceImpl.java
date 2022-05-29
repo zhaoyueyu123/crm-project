@@ -190,6 +190,5 @@ public class ClueServiceImpl implements ClueService {
         clueActivityRelationMapper.deleteClueActivityRelationByClueId(clueId);
         //删除该线索
         clueMapper.deleteClueById(clueId);
-        int m=10/0;
     }
 }

@@ -3,6 +3,8 @@ package com.bjpowernode.crm.workbench.mapper;
 import com.bjpowernode.crm.workbench.domain.Tran;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface TranMapper {
     /**
@@ -59,4 +61,10 @@ public interface TranMapper {
      * @return
      */
     int insertTran(Tran tran);
+
+    /**
+     * 查询全部交易信息
+     * @return
+     */
+    List<Tran> selectTranAll();
 }
