@@ -15,7 +15,51 @@ String basePath=request.getScheme()+"://"+request.getServerName()+":"+request.ge
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
 <script type="text/javascript" src="jquery/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
-
+<script type="text/javascript" src="jquery/bs_typeahead/bootstrap3-typeahead.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //给阶段下拉框添加change事件
+        $("#create-transactionStage").change(function(){
+            //收集参数
+            var stageValue=$(this).find("option:selected").val();
+            //表单验证
+            if(stageValue==""){
+                //清空"可能性"输入框
+                $("#create-possibility").val("");
+                return;
+            }
+            //发送请求
+            $.ajax({
+                url:'workbench/transaction/getPossibilityByStage.do',
+                data:{
+                    stageValue:stageValue
+                },
+                type:'post',
+                dataType:'json',
+                success:function(data){
+                    //把获取到的可能性显示到输入框中
+                    $("#create-possibility").val(data);
+                }
+            })
+        });
+        //添加自动搜索下拉框
+        $("#create-accountName").typeahead({
+            source:function(jquery,process){
+                $.ajax({
+                    url:'workbench/transaction/queryAllCustomerNameByName.do',
+                    data:{
+                        customerName:jquery
+                    },
+                    type:'post',
+                    dataType:'json',
+                    success:function(data){
+                        process(data);
+                    }
+                });
+            }
+        });
+    });
+</script>
 </head>
 <body>
 
