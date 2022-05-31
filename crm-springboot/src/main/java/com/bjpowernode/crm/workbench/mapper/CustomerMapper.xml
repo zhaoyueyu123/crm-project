@@ -229,4 +229,17 @@
     insert into tbl_customer(id, owner, name, website, phone, create_by, create_time, contact_summary, next_contact_time, description, address)
     values(#{id},#{owner},#{name},#{website},#{phone},#{createBy},#{createTime},#{contactSummary},#{nextContactTime},#{description},#{address})
   </insert>
+
+  <select id="selectAllCustomerNameByName" parameterType="string" resultType="string">
+    select name
+    from tbl_customer
+    where name like '%' #{name} '%'
+  </select>
+
+  <select id="selectCustomerByName" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from tbl_customer
+    where name=#{name}
+  </select>
 </mapper>

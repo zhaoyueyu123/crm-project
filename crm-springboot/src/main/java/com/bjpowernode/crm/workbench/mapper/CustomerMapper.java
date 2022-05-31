@@ -3,6 +3,8 @@ package com.bjpowernode.crm.workbench.mapper;
 import com.bjpowernode.crm.workbench.domain.Customer;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CustomerMapper {
     /**
@@ -59,4 +61,17 @@ public interface CustomerMapper {
      * @return
      */
     int insertCustomer(Customer customer);
+
+    /**
+     * 根据customerName模糊查询所有客户名称
+     * @return
+     */
+    List<String> selectAllCustomerNameByName(String customerName);
+
+    /**
+     * 根据name精确查询客户
+     * @param name
+     * @return
+     */
+    Customer selectCustomerByName(String name);
 }
