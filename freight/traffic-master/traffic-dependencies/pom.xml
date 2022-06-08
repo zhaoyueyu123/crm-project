@@ -9,6 +9,7 @@
     <modules>
         <module>../traffic-api</module>
         <module>../traffic-cache</module>
+        <module>../traffic-system</module>
     </modules>
     <name>traffic-dependencies</name>
     <description>Demo project for Spring Boot</description>
