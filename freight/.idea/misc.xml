@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/traffic-master/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-system/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-api/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-cache/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-carry/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-web/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-transport/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-storage/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-search/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-pack/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-mq/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-induce/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-finance/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-dependencies/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-delivery/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-declare/pom.xml" />
+        <option value="$PROJECT_DIR$/traffic-master/traffic-customer/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

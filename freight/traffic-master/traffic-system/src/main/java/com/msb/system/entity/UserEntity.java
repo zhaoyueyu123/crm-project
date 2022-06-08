@@ -79,6 +79,7 @@ public class UserEntity {
      * @mbggenerated Wed Jun 01 10:30:34 CST 2022
      */
 
+    //查询功能的时候会使用到
     private Date startTime;
     private Date endTime;
     public Integer getUid() {
