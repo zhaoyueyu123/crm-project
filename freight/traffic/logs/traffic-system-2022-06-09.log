@@ -1,0 +1,241 @@
+2022-06-09 10:52:10.247 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 17840 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 10:52:10.250 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 10:52:11.280 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 10:52:11.391 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91ms. Found 1 JPA repository interfaces.
+2022-06-09 10:52:12.816 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 10:52:12.830 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 10:52:12.831 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 10:52:12.831 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 10:52:12.960 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 10:52:12.960 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2641 ms
+2022-06-09 10:52:13.230 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 10:52:13.626 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 10:52:13.720 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 10:52:13.833 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 10:52:14.078 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 10:52:14.296 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 10:52:15.096 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 10:52:15.113 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 10:52:15.568 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 10:52:15.739 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 10:52:16.003 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 10:52:16.043 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 10:52:16.052 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 6.619 seconds (JVM running for 7.57)
+2022-06-09 10:56:02.387 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 10:56:02.387 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 10:56:02.411 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 24 ms
+2022-06-09 10:56:02.452 [http-nio-8080-exec-1] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2022-06-09 10:57:33.311 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 10:57:33.313 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 10:57:33.316 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 10:57:33.366 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-06-09 10:57:37.133 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 3496 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 10:57:37.136 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 10:57:37.979 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 10:57:38.052 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 64ms. Found 1 JPA repository interfaces.
+2022-06-09 10:57:38.880 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 10:57:38.894 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 10:57:38.894 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 10:57:38.895 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 10:57:39.035 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 10:57:39.036 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1817 ms
+2022-06-09 10:57:39.269 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 10:57:39.625 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 10:57:39.717 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 10:57:39.836 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 10:57:40.082 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 10:57:40.311 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 10:57:41.194 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 10:57:41.205 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 10:57:41.621 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 10:57:41.758 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 10:57:42.095 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 10:57:42.151 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 10:57:42.162 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 5.771 seconds (JVM running for 6.446)
+2022-06-09 10:57:49.177 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 10:57:49.177 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 10:57:49.187 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2022-06-09 10:57:49.205 [http-nio-8080-exec-1] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2022-06-09 10:58:28.884 [http-nio-8080-exec-3] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2022-06-09 10:58:46.309 [http-nio-8080-exec-4] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 10:58:46.311 [http-nio-8080-exec-4] ERROR com.msb.system.web.UserController - system user addUser uname length< 3
+2022-06-09 10:58:46.311 [http-nio-8080-exec-4] INFO  com.msb.system.web.UserController - param:com.msb.system.info.UserInfo@590e28a5
+2022-06-09 10:58:46.321 [http-nio-8080-exec-4] INFO  com.msb.system.web.UserController - system user addUser return msg :com.msb.api.commons.ResponseResult@5d3fd634
+2022-06-09 10:59:01.539 [http-nio-8080-exec-5] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 10:59:01.540 [http-nio-8080-exec-5] ERROR com.msb.system.web.UserController - system user addUser uname length< 3
+2022-06-09 10:59:01.540 [http-nio-8080-exec-5] INFO  com.msb.system.web.UserController - param:com.msb.system.info.UserInfo@503c1198
+2022-06-09 10:59:01.540 [http-nio-8080-exec-5] INFO  com.msb.system.web.UserController - system user addUser return msg :com.msb.api.commons.ResponseResult@5efbf5ef
+2022-06-09 10:59:28.048 [http-nio-8080-exec-7] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 10:59:28.048 [http-nio-8080-exec-7] INFO  com.msb.system.web.UserController - system user addUser pass digest
+2022-06-09 10:59:28.050 [http-nio-8080-exec-7] INFO  com.msb.system.web.UserController - system user addUser userService addUser start
+2022-06-09 10:59:28.051 [http-nio-8080-exec-7] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser start :com.msb.system.info.UserInfo@660f78e3
+2022-06-09 10:59:28.051 [http-nio-8080-exec-7] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository start
+2022-06-09 10:59:28.195 [http-nio-8080-exec-7] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+2022-06-09 10:59:28.195 [http-nio-8080-exec-7] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'end_time' in 'field list'
+2022-06-09 10:59:28.204 [http-nio-8080-exec-7] ERROR com.msb.system.service.impl.UserServiceImpl - system user service addUser failorg.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement
+2022-06-09 10:59:28.204 [http-nio-8080-exec-7] INFO  com.msb.system.web.UserController - system user addUser userService addUser end :false
+2022-06-09 10:59:28.205 [http-nio-8080-exec-7] INFO  com.msb.system.web.UserController - system user addUser return :com.msb.api.commons.ResponseResult@54a7a3a6
+2022-06-09 11:05:12.184 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:05:12.184 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:05:12.186 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 11:05:12.195 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-06-09 11:05:16.226 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 4748 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 11:05:16.229 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 11:05:16.944 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:05:17.013 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 59ms. Found 1 JPA repository interfaces.
+2022-06-09 11:05:17.824 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:05:17.837 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:05:17.837 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 11:05:17.838 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 11:05:17.971 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 11:05:17.971 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1677 ms
+2022-06-09 11:05:18.211 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 11:05:18.510 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 11:05:18.563 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:05:18.618 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 11:05:18.763 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:05:18.917 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 11:05:19.572 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:05:19.583 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:05:19.945 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:05:20.114 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:05:20.345 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:05:20.380 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:05:20.390 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 4.831 seconds (JVM running for 5.374)
+2022-06-09 11:05:22.580 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:05:22.580 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:05:22.589 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 9 ms
+2022-06-09 11:05:22.638 [http-nio-8080-exec-1] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 11:05:22.639 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser pass digest
+2022-06-09 11:05:22.641 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser start
+2022-06-09 11:05:22.641 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser start :com.msb.system.info.UserInfo@1d434402
+2022-06-09 11:05:22.641 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository start
+2022-06-09 11:05:22.711 [http-nio-8080-exec-1] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+2022-06-09 11:05:22.711 [http-nio-8080-exec-1] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'uststus' in 'field list'
+2022-06-09 11:05:22.721 [http-nio-8080-exec-1] ERROR com.msb.system.service.impl.UserServiceImpl - system user service addUser failorg.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement
+2022-06-09 11:05:22.721 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser end :false
+2022-06-09 11:05:22.722 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser return :com.msb.api.commons.ResponseResult@76b8f556
+2022-06-09 11:06:06.572 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:06:06.573 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:06:06.574 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 11:06:06.582 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-06-09 11:06:10.739 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 17708 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 11:06:10.742 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 11:06:11.460 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:06:11.520 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 51ms. Found 1 JPA repository interfaces.
+2022-06-09 11:06:12.318 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:06:12.332 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:06:12.333 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 11:06:12.333 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 11:06:12.463 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 11:06:12.463 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1664 ms
+2022-06-09 11:06:12.689 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 11:06:12.995 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 11:06:13.050 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:06:13.102 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 11:06:13.247 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:06:13.383 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 11:06:13.972 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:06:13.981 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:06:14.321 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:06:14.452 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:06:14.675 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:06:14.710 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:06:14.721 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 4.679 seconds (JVM running for 5.221)
+2022-06-09 11:06:16.495 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:06:16.495 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:06:16.505 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2022-06-09 11:06:16.582 [http-nio-8080-exec-1] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 11:06:16.583 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser pass digest
+2022-06-09 11:06:16.584 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser start
+2022-06-09 11:06:16.585 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser start :com.msb.system.info.UserInfo@1e2cf8f4
+2022-06-09 11:06:16.585 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository start
+2022-06-09 11:06:16.679 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository end
+2022-06-09 11:06:16.680 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - user:
+2022-06-09 11:06:16.680 [http-nio-8080-exec-1] ERROR com.msb.system.service.impl.UserServiceImpl - system user service addUser fail
+2022-06-09 11:06:16.680 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser end :false
+2022-06-09 11:06:16.681 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser return :com.msb.api.commons.ResponseResult@4b80448
+2022-06-09 11:07:59.983 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:07:59.983 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:07:59.985 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 11:07:59.996 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-06-09 11:08:05.672 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 4352 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 11:08:05.677 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 11:08:06.502 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:08:06.581 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68ms. Found 1 JPA repository interfaces.
+2022-06-09 11:08:07.659 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:08:07.677 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:08:07.678 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 11:08:07.678 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 11:08:07.830 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 11:08:07.831 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2087 ms
+2022-06-09 11:08:08.107 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 11:08:08.409 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 11:08:08.474 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:08:08.554 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 11:08:08.737 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:08:08.915 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 11:08:09.621 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:08:09.632 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:08:10.099 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:08:10.265 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:08:10.527 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:08:10.563 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:08:10.573 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 5.588 seconds (JVM running for 7.318)
+2022-06-09 11:08:14.993 [http-nio-8080-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:08:14.994 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:08:15.005 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2022-06-09 11:08:15.070 [http-nio-8080-exec-1] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 11:08:19.228 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser pass digest
+2022-06-09 11:08:19.229 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser start
+2022-06-09 11:08:23.165 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser start :com.msb.system.info.UserInfo@76b1730c
+2022-06-09 11:08:24.709 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository start
+2022-06-09 11:08:35.694 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository end
+2022-06-09 11:08:39.936 [http-nio-8080-exec-1] INFO  com.msb.system.service.impl.UserServiceImpl - user:
+2022-06-09 11:09:09.466 [http-nio-8080-exec-1] ERROR com.msb.system.service.impl.UserServiceImpl - system user service addUser fail
+2022-06-09 11:09:09.466 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser userService addUser end :false
+2022-06-09 11:09:09.467 [http-nio-8080-exec-1] INFO  com.msb.system.web.UserController - system user addUser return :com.msb.api.commons.ResponseResult@d68b4b0
+2022-06-09 11:09:09.860 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:09:09.861 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:09:09.864 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 11:09:09.876 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2022-06-09 11:09:13.335 [main] INFO  com.msb.system.TrafficSystemApplication - Starting TrafficSystemApplication on 00HD10460-JP with PID 17940 (E:\code\crm\freight\traffic-master\traffic-system\target\classes started by mid1717 in E:\code\crm\freight\traffic-master)
+2022-06-09 11:09:13.337 [main] INFO  com.msb.system.TrafficSystemApplication - The following profiles are active: dev
+2022-06-09 11:09:14.046 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-09 11:09:14.121 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 66ms. Found 1 JPA repository interfaces.
+2022-06-09 11:09:14.928 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-06-09 11:09:14.939 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:09:14.940 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-06-09 11:09:14.941 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.41]
+2022-06-09 11:09:15.069 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-06-09 11:09:15.069 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1685 ms
+2022-06-09 11:09:15.286 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2022-06-09 11:09:15.570 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2022-06-09 11:09:15.620 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-09 11:09:15.669 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.4.25.Final
+2022-06-09 11:09:15.818 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-09 11:09:15.954 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-09 11:09:16.516 [main] INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-09 11:09:16.527 [main] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:09:16.850 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-09 11:09:16.978 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:09:17.187 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2022-06-09 11:09:17.217 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-09 11:09:17.226 [main] INFO  com.msb.system.TrafficSystemApplication - Started TrafficSystemApplication in 4.504 seconds (JVM running for 5.032)
+2022-06-09 11:09:22.937 [http-nio-8080-exec-2] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-09 11:09:22.938 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2022-06-09 11:09:22.950 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 12 ms
+2022-06-09 11:09:23.017 [http-nio-8080-exec-2] ERROR com.msb.system.web.UserController - system user addUser start
+2022-06-09 11:09:23.018 [http-nio-8080-exec-2] INFO  com.msb.system.web.UserController - system user addUser pass digest
+2022-06-09 11:09:23.019 [http-nio-8080-exec-2] INFO  com.msb.system.web.UserController - system user addUser userService addUser start
+2022-06-09 11:09:23.019 [http-nio-8080-exec-2] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser start :com.msb.system.info.UserInfo@3c408ee5
+2022-06-09 11:09:23.019 [http-nio-8080-exec-2] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository start
+2022-06-09 11:09:23.096 [http-nio-8080-exec-2] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser userRepository end
+2022-06-09 11:09:23.096 [http-nio-8080-exec-2] INFO  com.msb.system.service.impl.UserServiceImpl - user:
+2022-06-09 11:09:23.096 [http-nio-8080-exec-2] INFO  com.msb.system.service.impl.UserServiceImpl - system user service addUser success
+2022-06-09 11:09:23.096 [http-nio-8080-exec-2] INFO  com.msb.system.web.UserController - system user addUser userService addUser end :true
+2022-06-09 11:09:23.097 [http-nio-8080-exec-2] INFO  com.msb.system.web.UserController - system user addUser return :com.msb.api.commons.ResponseResult@30af2173
+2022-06-09 11:12:16.992 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-06-09 11:12:16.992 [SpringContextShutdownHook] INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-09 11:12:16.994 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2022-06-09 11:12:17.002 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

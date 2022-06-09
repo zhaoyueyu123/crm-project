@@ -21,28 +21,29 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 添加用户
-     * @param userEntity
+     * @param userInfo
      * @return
      */
     @Override
-    public boolean addUser(UserEntity userEntity) {
+    public boolean addUser(UserInfo userInfo) {
 
-        UserEntity user = null;
-        logger.info("system user service addUser start :" +userEntity);
+        UserInfo user = null;
+        logger.info("system user service addUser start :" +userInfo);
         logger.info("system user service addUser userRepository start");
         try {
-            user = userRepository.save(userEntity);
+            user = userRepository.save(userInfo);
         }catch (Exception e){
             logger.error("system user service addUser fail"+e);
             return false;
         }
         logger.info("system user service addUser userRepository end");
         logger.info("user:",user);
-        if(SystemUtils.isNull(user) && user.getUid() != ZERO){
+        if(!SystemUtils.isNull(user) && user.getUid() != ZERO){
             logger.info("system user service addUser success");
             return true;
         }
         logger.error("system user service addUser fail");
         return false;
     }
+
 }

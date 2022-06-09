@@ -5,5 +5,5 @@ import com.msb.system.info.UserInfo;
 
 public interface UserService {
 
-    public boolean addUser(UserEntity userEntity);
+    public boolean addUser(UserInfo userInfo);
 }
