@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.nio.charset.StandardCharsets;
@@ -120,6 +121,56 @@ public class UserController {
             responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_ADD_FAIL);
         }
         logger.info("system user addUser return :"+responseResult);
+        return responseResult;
+    }
+
+    /**
+     * 删除用户
+     * @param uid
+     * @return
+     */
+    @RequestMapping(value = "/delUser",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult delUser(String uid){
+        //判断传过来的参数是否为空
+        if(SystemUtils.isNullOrEmpty(uid)){
+            logger.error("system user delUser uid is null");
+            ResponseResult responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_DEL_FAIL_UID_NULL);
+            logger.info("system user delUser return msg :"+responseResult);
+            return responseResult;
+        }
+        //简单的逻辑判断；
+        logger.error("system user delUser UserService start");
+        boolean bl = userService.delUser(uid);
+        logger.error("system user delUser UserService end");
+        ResponseResult responseResult;
+        if(bl){
+            logger.error("system user delUser success");
+            responseResult = new ResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS);
+        }else {
+            logger.error("system user delUser fail");
+            responseResult = new ResponseResult(SystemCode.TRAFFIC_SYSTEM_ERROR);
+        }
+        logger.error("system user delUser end");
+        return responseResult;
+    }
+
+    /**
+     * 更新用户信息
+     * @param userInfo
+     * @return
+     */
+    @RequestMapping(value = "/updUser",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseResult updUser(UserInfo userInfo){
+        ResponseResult responseResult = null;
+        //判断传过来的参数是否为空
+        if(SystemUtils.isNull(userInfo)){
+            logger.error("system user updUser userInfo is null");
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_DEL_FAIL_UID_NULL);
+            logger.info("system user updUser return msg :"+responseResult);
+            return responseResult;
+        }
         return responseResult;
     }
 }
