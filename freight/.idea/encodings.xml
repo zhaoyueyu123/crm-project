@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-commons/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-entity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-entity/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-execption/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-execption/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-interface/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-resultCode/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-api/traffic-api-resultCode/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-cache/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/traffic-master/traffic-cache/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-carry/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-carry/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/traffic-master/traffic-customer/src/main/java" charset="UTF-8" />

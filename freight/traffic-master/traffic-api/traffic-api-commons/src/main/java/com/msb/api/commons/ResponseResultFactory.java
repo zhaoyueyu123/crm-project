@@ -20,7 +20,8 @@ public class ResponseResultFactory<T> {
         return new ResponseResult(resultCode,resultMsg);
     }
 
-    public ResponseResult buildResponseResult(String resultCode, String resultMsg, T obj){
-        return new ResponseResult(resultCode,resultMsg,obj);
+
+    public static <T>ResponseResult buildResponseResult(String resultCode, T obj){
+        return new ResponseResult(resultCode,obj);
     }
 }

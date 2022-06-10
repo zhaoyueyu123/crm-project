@@ -26,6 +26,7 @@ public interface SystemCode {
 
     String SYSTEM_USER_ERROR_DEL_FAIL_UID_NULL = "10030";
 
+    String SYSTEM_USER_ERROR_UPD_FAIL_PARAM_NULL = "10060";
     String SYSTEM_USER_ERROR_UPD_FAIL_UID_NULL = "10060";
     //10500-10999  成功
     String SYSTEM_USER_INFO_ADD = "10500";

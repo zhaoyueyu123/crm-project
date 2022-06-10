@@ -7,6 +7,7 @@ import com.msb.api.commons.SystemUtils;
 import com.msb.system.entity.UserEntity;
 import com.msb.system.info.UserInfo;
 import com.msb.system.service.UserService;
+import org.springframework.data.domain.Example;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -140,7 +143,7 @@ public class UserController {
             return responseResult;
         }
         //简单的逻辑判断；
-        logger.error("system user delUser UserService start");
+        logger.info("system user delUser UserService start");
         boolean bl = userService.delUser(uid);
         logger.error("system user delUser UserService end");
         ResponseResult responseResult;
@@ -151,7 +154,7 @@ public class UserController {
             logger.error("system user delUser fail");
             responseResult = new ResponseResult(SystemCode.TRAFFIC_SYSTEM_ERROR);
         }
-        logger.error("system user delUser end");
+        logger.info("system user delUser end");
         return responseResult;
     }
 
@@ -167,10 +170,63 @@ public class UserController {
         //判断传过来的参数是否为空
         if(SystemUtils.isNull(userInfo)){
             logger.error("system user updUser userInfo is null");
-            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_DEL_FAIL_UID_NULL);
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_UID_NULL);
             logger.info("system user updUser return msg :"+responseResult);
             return responseResult;
         }
+
+        if(userInfo.getUid() == 0){
+            logger.error("system user updUser uid is null");
+            responseResult = ResponseResultFactory.buildResponseResult(SystemCode.SYSTEM_USER_ERROR_UPD_FAIL_UID_NULL);
+            logger.info("system user updUser return msg :"+responseResult);
+            return responseResult;
+        }
+        logger.info("system user updUser UserService start");
+        boolean bl = userService.updUser(userInfo);
+        logger.info("system user updUser UserService end");
+        if(bl){
+            logger.info("system user updUser success");
+            responseResult = new ResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS);
+        }else {
+            logger.error("system user updUser fail");
+            responseResult = new ResponseResult(SystemCode.TRAFFIC_SYSTEM_ERROR);
+        }
+        logger.info("system user updUser end");
+        return responseResult;
+    }
+
+    /**
+     * 查询所有的用户信息
+     * @return
+     */
+    @RequestMapping(value = "/findAllUser")
+    public ResponseResult<List<UserInfo>> findAllUser(){
+        logger.info("system user findAllUser start");
+        List<UserInfo> allUser = userService.findAllUser();
+        ResponseResult<List<UserInfo>> responseResult =  ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS,allUser);
+        logger.info("system user findAllUser end");
+        return responseResult;
+    }
+
+    @RequestMapping(value = "/findUsersByName")
+    public ResponseResult<List<UserInfo>> findUsersByName(UserInfo userInfo){
+        logger.info("system user findUsersByName start");
+        ResponseResult<List<UserInfo>> responseResult = null;
+        List<UserInfo> userInfoList = userService.findUsersByName(userInfo);
+        responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS,userInfoList);
+        logger.info("system user findUsersByName end");
+        return responseResult;
+    }
+
+    /**
+     * 通用分页查询
+     */
+    @RequestMapping("/queryUsers")
+    public ResponseResult queryUsers(UserInfo userInfo){
+        logger.info("system user queryUsers start");
+        ResponseResult responseResult = null;
+        Map<String,Object> map = userService.queryUsers(userInfo,0,3);
+        responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS,map);
         return responseResult;
     }
 }

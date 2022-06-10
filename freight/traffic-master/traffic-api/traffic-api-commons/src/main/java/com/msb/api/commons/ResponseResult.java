@@ -23,6 +23,12 @@ public class ResponseResult<T> {
         this.result = result;
     }
 
+    public ResponseResult(String resultCode, T result) {
+        this.resultCode = resultCode;
+
+        this.result = result;
+    }
+
     public String getResultCode() {
         return resultCode;
     }
