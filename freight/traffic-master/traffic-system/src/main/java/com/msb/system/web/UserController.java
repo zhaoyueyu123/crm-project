@@ -222,10 +222,10 @@ public class UserController {
      * 通用分页查询
      */
     @RequestMapping("/queryUsers")
-    public ResponseResult queryUsers(UserInfo userInfo){
+    public ResponseResult queryUsers(UserInfo userInfo,int page,int size){
         logger.info("system user queryUsers start");
         ResponseResult responseResult = null;
-        Map<String,Object> map = userService.queryUsers(userInfo,0,3);
+        Map<String,Object> map = userService.queryUsers(userInfo,page,size);
         responseResult = ResponseResultFactory.buildResponseResult(SystemCode.TRAFFIC_SYSTEM_SUCCESS,map);
         return responseResult;
     }

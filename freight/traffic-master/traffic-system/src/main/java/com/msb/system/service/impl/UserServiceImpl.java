@@ -159,7 +159,8 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> queryUsers(UserInfo userInfo,int page,int size) {
         logger.info("system user service queryUsers start");
         //分页对象
-        Pageable of = PageRequest.of(page,size, Sort.Direction.ASC);
+        Sort sort = Sort.by(Sort.Order.desc("uid"));
+        Pageable of = PageRequest.of(page,size, sort);
         //条件查询
         Specification<UserInfo> spec = new Specification<UserInfo>() {
             @Override
